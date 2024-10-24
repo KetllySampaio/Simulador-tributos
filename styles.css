@@ -1,0 +1,243 @@
+/* Configurações Globais */
+
+:root {
+    --primary-color: #4CAF50;
+    /* Verde tecnológico */
+    --secondary-color: #2F3A48;
+    /* Cinza escuro moderno */
+    --accent-color: #FF6F61;
+    /* Cor de destaque */
+    --background-color: #F5F7FA;
+    /* Background claro */
+    --font-family-main: 'Inter', sans-serif;
+    /* Fonte moderna */
+    --font-size-base: 1rem;
+    /* Tamanho base da fonte */
+    --font-color: #333;
+    /* Cor da fonte */
+    --transition-speed: 0.3s;
+    /* Velocidade de transição */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+html,
+body {
+    font-family: var(--font-family-main);
+    font-size: var(--font-size-base);
+    color: var(--font-color);
+    background-color: var(--background-color);
+    line-height: 1.6;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Navbar */
+
+.navbar {
+    background-color: var(--secondary-color);
+    padding: 1rem 2rem;
+}
+
+.navbar-brand img {
+    width: 40px;
+    height: 40px;
+}
+
+.navbar-brand .brand-text {
+    color: white;
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+
+/* Header */
+
+.hero-body {
+    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Plum_trees_Kitano_Tenmangu.jpg/1200px-Plum_trees_Kitano_Tenmangu.jpg') no-repeat center center;
+    background-size: cover;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.hero-body h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.hero-body p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+
+/* Seção do Formulário */
+
+.container {
+    max-width: 900px;
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    margin: 2rem 0;
+}
+
+h4 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+label {
+    font-weight: 500;
+    color: var(--secondary-color);
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+    background-color: #f9f9f9;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
+    outline: none;
+    background-color: #fff;
+}
+
+
+/* Botão */
+
+button[type="submit"] {
+    background-color: var(--primary-color);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+}
+
+button[type="submit"]:hover {
+    background-color: var(--accent-color);
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(255, 111, 97, 0.6);
+}
+
+
+/* Resolução Responsiva */
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem;
+    }
+    .hero-body h1 {
+        font-size: 2rem;
+    }
+    .hero-body p {
+        font-size: 1rem;
+    }
+}
+
+
+/* Animações */
+
+input,
+select,
+textarea {
+    transition: transform 0.2s ease-in-out;
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+    transform: scale(1.02);
+}
+
+button {
+    transition: transform var(--transition-speed);
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+
+/* Footer */
+
+footer {
+    width: 100%;
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 1rem 0;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    margin-top: auto;
+}
+
+footer img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+footer p {
+    display: inline;
+    color: #ddd;
+    margin-left: 10px;
+}
+
+
+/* Scrollbar Customizado */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #efefef;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--primary-color);
+}
