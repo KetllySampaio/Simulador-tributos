@@ -1,28 +1,126 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    lin
-    <title>Simulador de Tributos</title>
+    <title>Calculadora DAS Simples Nacional e MEI</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-<main>
-    <div class="title"> Simulador de Tributos </div>
+<style>
+    body {
+        background-color: #f5f5f5;
+    }
+    
+    .container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+</style>
 
-    <select id="tributacao" class="tributacao_pj" name="tributacao">
-        <option value="" selected="selected">--Selecione--</option>
-        <option value="simples">Simples Nacional</option>
-        <option value="presumido">Lucro Presumido</option>
-        <option value="real">Lucro Real</option>
-    </select>
-    if <option == 'simples':
-            <div class="form-group">
-            <label for="rbt12">RBT12</label> <i style="color:rgb(255, 0, 0)" title="Receita bruta acumulada nos doze meses anteriores ao período de apuração." class="fa fa-info-circle"></i>
-            <input id="rbt12" class="form-control price acao" name="rbt12" type="text">
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Calculadora DAS Simples Nacional e MEI</h1>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="simples-tab" data-toggle="tab" href="#simples" role="tab">Simples Nacional</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="mei-tab" data-toggle="tab" href="#mei" role="tab">MEI</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="simples" role="tabpanel">
+                <form id="formSimples" class="mt-3">
+                    <div class="form-group">
+                        <label for="revenueSimples">Receita Bruta Anual:</label>
+                        <input type="number" id="revenueSimples" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Calcular</button>
+                </form>
+                <div id="resultSimples" class="alert alert-info mt-3" style="display:none;"></div>
+            </div>
+            <div class="tab-pane fade" id="mei" role="tabpanel">
+                <form id="formMEI" class="mt-3">
+                    <div class="form-group">
+                        <label for="revenueMEI">Receita Bruta Anual:</label>
+                        <input type="number" id="revenueMEI" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Calcular</button>
+                </form>
+                <div id="resultMEI" class="alert alert-info mt-3" style="display:none;"></div>
             </div>
         </div>
-    
-</main>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
 </body>
+<script>
+    document.getElementById('formSimples').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const revenue = parseFloat(document.getElementById('revenueSimples').value);
+        let rate;
+
+        if (revenue <= 180000) {
+            rate = 0.06;
+        } else if (revenue <= 360000) {
+            rate = 0.112;
+        } else if (revenue <= 720000) {
+            rate = 0.135;
+        } else if (revenue <= 1800000) {
+            rate = 0.16;
+        } else if (revenue <= 3600000) {
+            rate = 0.21;
+        } else {
+            rate = 0.33;
+        }
+
+        const tax = revenue * rate;
+        document.getElementById('resultSimples').innerText = `O valor do imposto é: R$ ${tax.toFixed(2)}`;
+        document.getElementById('resultSimples').style.display = 'block';
+
+        saveToLocalStorage('simples', revenue, tax);
+    });
+
+    document.getElementById('formMEI').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const revenue = parseFloat(document.getElementById('revenueMEI').value);
+        const meiRate = 0.05;
+
+        const tax = revenue * meiRate;
+        document.getElementById('resultMEI').innerText = `O valor do imposto é: R$ ${tax.toFixed(2)}`;
+        document.getElementById('resultMEI').style.display = 'block';
+
+        saveToLocalStorage('mei', revenue, tax);
+    });
+
+    function saveToLocalStorage(type, revenue, tax) {
+        const data = {
+            revenue: revenue,
+            tax: tax,
+            date: new Date().toISOString()
+        };
+        localStorage.setItem(type, JSON.stringify(data));
+    }
+
+    async function loadFromLocalStorage(type) {
+        const data = JSON.parse(localStorage.getItem(type));
+        if (data) {
+            console.log(`Último cálculo para ${type.toUpperCase()}: Receita: R$ ${data.revenue}, Imposto: R$ ${data.tax}, Data: ${data.date}`);
+        }
+    }
+
+    // Carregar últimos dados do Local Storage (exemplo de uso de CRUD)
+    document.addEventListener('DOMContentLoaded', () => {
+        loadFromLocalStorage('simples');
+        loadFromLocalStorage('mei');
+    });
+</script>
+
 </html>
