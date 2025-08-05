@@ -1,0 +1,115 @@
+.calculator-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    mat-card {
+        mat-card-header {
+            margin-bottom: 20px;
+        }
+
+        mat-card-content {
+            form {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                .form-row {
+                    display: flex;
+                    gap: 20px;
+                    
+                    mat-form-field {
+                        flex: 1;
+                    }
+                }
+
+                .full-width {
+                    width: 100%;
+                }
+
+                .button-container {
+                    display: flex;
+                    justify-content: center;
+                    margin-top: 20px;
+
+                    button {
+                        min-width: 200px;
+                    }
+                }
+            }
+
+            .error-message {
+                color: #f44336;
+                text-align: center;
+                margin: 20px 0;
+            }
+
+            .result-container {
+                margin-top: 30px;
+                padding-top: 20px;
+                border-top: 1px solid #e0e0e0;
+
+                h3 {
+                    margin-bottom: 20px;
+                    color: #2196f3;
+                }
+
+                .result-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                    gap: 20px;
+                    margin-bottom: 30px;
+                }
+
+                .result-item {
+                    background-color: #f5f5f5;
+                    padding: 15px;
+                    border-radius: 4px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px;
+
+                    .label {
+                        color: #666;
+                        font-size: 0.9em;
+                    }
+
+                    .value {
+                        font-size: 1.2em;
+                        font-weight: 500;
+                        color: #2196f3;
+                    }
+                }
+
+                h4 {
+                    margin: 20px 0;
+                }
+
+                .tax-breakdown {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                    gap: 15px;
+
+                    .tax-item {
+                        background-color: #fff;
+                        padding: 10px;
+                        border: 1px solid #e0e0e0;
+                        border-radius: 4px;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        .label {
+                            color: #666;
+                        }
+
+                        .value {
+                            font-weight: 500;
+                            color: #333;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

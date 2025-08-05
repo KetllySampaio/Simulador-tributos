@@ -1,0 +1,93 @@
+<div class="calculator-container">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Calculadora Simples Nacional</mat-card-title>
+        </mat-card-header>
+        
+        <mat-card-content>
+            <form [formGroup]="calculationForm" (ngSubmit)="onSubmit()">
+                <div class="form-row">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Receita Bruta Mensal</mat-label>
+                        <input matInput type="text" formControlName="revenue" mask="separator.2" thousandSeparator="." decimalSeparator="," prefix="R$ " />
+                        <mat-error *ngIf="calculationForm.get('revenue')?.errors?.['required']">
+                            Receita bruta é obrigatória
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Despesas Mensais</mat-label>
+                        <input matInput type="text" formControlName="expenses" mask="separator.2" thousandSeparator="." decimalSeparator="," prefix="R$ " />
+                        <mat-error *ngIf="calculationForm.get('expenses')?.errors?.['required']">
+                            Despesas são obrigatórias
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="form-row">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Período</mat-label>
+                        <input matInput type="month" formControlName="period" />
+                        <mat-error *ngIf="calculationForm.get('period')?.errors?.['required']">
+                            Período é obrigatório
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Anexo do Simples Nacional</mat-label>
+                        <mat-select formControlName="annexType">
+                            <mat-option *ngFor="let type of annexTypes" [value]="type.value">
+                                {{type.label}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="calculationForm.get('annexType')?.errors?.['required']">
+                            Anexo é obrigatório
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Receita Bruta Acumulada (últimos 12 meses)</mat-label>
+                    <input matInput type="text" formControlName="grossRevenueLast12Months" mask="separator.2" thousandSeparator="." decimalSeparator="," prefix="R$ " />
+                    <mat-error *ngIf="calculationForm.get('grossRevenueLast12Months')?.errors?.['required']">
+                        Receita bruta acumulada é obrigatória
+                    </mat-error>
+                </mat-form-field>
+
+                <div class="button-container">
+                    <button mat-raised-button color="primary" type="submit" [disabled]="loading || calculationForm.invalid">
+                        {{ loading ? 'Calculando...' : 'Calcular' }}
+                    </button>
+                </div>
+            </form>
+
+            <div *ngIf="error" class="error-message">
+                {{error}}
+            </div>
+
+            <div *ngIf="result" class="result-container">
+                <h3>Resultado do Cálculo</h3>
+                
+                <div class="result-grid">
+                    <div class="result-item">
+                        <span class="label">Total de Impostos:</span>
+                        <span class="value">{{formatCurrency(result.totalTax)}}</span>
+                    </div>
+                    
+                    <div class="result-item">
+                        <span class="label">Alíquota Efetiva:</span>
+                        <span class="value">{{formatPercentage(result.effectiveRate)}}</span>
+                    </div>
+                </div>
+
+                <h4>Detalhamento dos Impostos</h4>
+                <div class="tax-breakdown">
+                    <div *ngFor="let tax of result.breakdown | keyvalue" class="tax-item">
+                        <span class="label">{{tax.key}}:</span>
+                        <span class="value">{{formatCurrency(tax.value)}}</span>
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
