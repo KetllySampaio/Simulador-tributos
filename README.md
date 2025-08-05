@@ -1,59 +1,123 @@
-# SimuladorTributos
+# 🏢 Simulador de Tributos
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.4.
+![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Material UI](https://img.shields.io/badge/Material--UI-0081CB?style=for-the-badge&logo=material-ui&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
 
-## Development server
+## 📋 Sobre o Projeto
 
-To start a local development server, run:
+O Simulador de Tributos é uma aplicação web desenvolvida com Angular e TypeScript que permite calcular impostos nos três principais regimes tributários brasileiros:
+
+- 💰 Simples Nacional
+- 📊 Lucro Presumido
+- 📈 Lucro Real
+
+### 🌟 Funcionalidades Principais
+
+- 🔐 Sistema de autenticação completo
+- 💱 Cálculo automático de impostos
+- 📱 Interface responsiva e moderna
+- 📊 Comparação entre regimes tributários
+- 📋 Geração de relatórios detalhados
+
+## 🛠️ Tecnologias Utilizadas
+
+- **Frontend:**
+  - Angular 17
+  - TypeScript
+  - Angular Material
+  - RxJS
+  - NgRx (em desenvolvimento)
+
+- **Segurança:**
+  - JWT Authentication
+  - Route Guards
+  - HTTP Interceptors
+
+## 🚀 Como Executar o Projeto
+
+### Pré-requisitos
+
+- Node.js (versão 18.x ou superior)
+- npm (versão 9.x ou superior)
+- Angular CLI
 
 ```bash
+# Clone este repositório
+git clone https://github.com/KetllySampaio/Simulador-tributos.git
+
+# Acesse a pasta do projeto
+cd Simulador-tributos
+
+# Instale as dependências
+npm install
+
+# Execute a aplicação
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+O servidor iniciará na porta 4200 - acesse http://localhost:4200
 
-## Code scaffolding
+## 📸 Screenshots
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Tela de Login
+![Tela de Login](img/login-screen.png)
 
-```bash
-ng generate component component-name
+### Dashboard Principal
+![Dashboard](img/dashboard.png)
+
+### Calculadora Simples Nacional
+![Simples Nacional](img/simples-nacional.png)
+
+## 📊 Estrutura do Projeto
+
+```
+src/
+├── app/
+│   ├── auth/              # Componentes de autenticação
+│   ├── calculator/        # Módulos de cálculo de impostos
+│   ├── shared/           # Componentes e serviços compartilhados
+│   └── core/             # Serviços core da aplicação
+├── assets/
+│   └── images/           # Imagens e ícones
+└── environments/         # Configurações de ambiente
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 🔒 Recursos de Segurança
 
-```bash
-ng generate --help
-```
+- ✅ Autenticação JWT
+- 🛡️ Proteção de rotas
+- 🔐 Criptografia de dados sensíveis
+- 📝 Validação de formulários
+- 🚫 Prevenção contra CSRF
 
-## Building
+## 📝 Features em Desenvolvimento
 
-To build the project run:
+- [ ] Integração com API da Receita Federal
+- [ ] Exportação de relatórios em PDF
+- [ ] Dashboard personalizado
+- [ ] Comparativo visual entre regimes
+- [ ] Histórico de cálculos
 
-```bash
-ng build
-```
+## 👥 Contribuição
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+1. Faça um Fork do projeto
+2. Crie uma Branch para sua Feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a Branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
 
-## Running unit tests
+## 📄 Licença
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
-```bash
-ng test
-```
+## 📬 Contato
 
-## Running end-to-end tests
+Ketlly Sampaio - [Github](https://github.com/KetllySampaio)
 
-For end-to-end (e2e) testing, run:
+Link do projeto: [https://github.com/KetllySampaio/Simulador-tributos](https://github.com/KetllySampaio/Simulador-tributos)
 
-```bash
-ng e2e
-```
+---
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+⌨️ com ❤️ por [Ketlly Sampaio](https://github.com/KetllySampaio) 😊
